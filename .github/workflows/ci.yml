@@ -1,0 +1,23 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Emit packaging artifacts
+        run: ./package_extensions.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: extension
+          path: |
+            captop-chrome-v*.zip
+            captop-firefox-v*.zip

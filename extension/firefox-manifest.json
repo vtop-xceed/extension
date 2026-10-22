@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "VTOP Captcha Solver",
+  "version": "1.4.2",
+  "description": "Automatically solve captchas on VTOP login page",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://vtop.vitbhopal.ac.in/*",
+    "https://captop.duckdns.org/*",
+    "https://captop-proxy.sykik.workers.dev/*"
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "captop-solver@sykik.dev",
+      "strict_min_version": "142.0"
+    }
+  },
+  "background": {
+    "scripts": [
+      "js/constants.js",
+      "js/background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://vtop.vitbhopal.ac.in/vtop/login*"
+      ],
+      "js": [
+        "js/constants.js",
+        "js/content.js"
+      ],
+      "css": [
+        "css/styles.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "assets/icon48.png"
+  },
+  "icons": {
+    "16": "assets/icon16.png",
+    "32": "assets/icon32.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  }
+}

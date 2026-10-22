@@ -1,0 +1,68 @@
+/**
+ * Windows 7 Loading Bar Styles
+ * Applied to #captchaStr input during API request
+ */
+
+/* Loading state - Windows 7 progress bar */
+.vtop-loading {
+  position: relative;
+  background: linear-gradient(to bottom,
+      #c4ecba 0%,
+      #7dd66c 15%,
+      #3cb045 50%,
+      #6adc6a 85%,
+      #7ee47f 100%) !important;
+  border: 1px solid #2d8c2d !important;
+  border-radius: 3px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.2) !important;
+  overflow: hidden !important;
+  color: transparent !important;
+  cursor: wait !important;
+}
+
+/* Shimmer animation overlay */
+.vtop-loading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 25%,
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0.1) 75%,
+      transparent 100%);
+  animation: win7-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes win7-shimmer {
+  0% {
+    left: -50%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+/* Solved state - brief green flash */
+.vtop-solved {
+  animation: solved-flash 0.3s ease-out;
+}
+
+@keyframes solved-flash {
+  0% {
+    background-color: #90EE90;
+    box-shadow: 0 0 10px #90EE90;
+  }
+
+  100% {
+    background-color: inherit;
+    box-shadow: none;
+  }
+}

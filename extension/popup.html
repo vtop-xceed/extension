@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html {
+      background: transparent;
+    }
+
+    body {
+      width: 100%;
+      min-width: 300px;
+      margin: 0;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-sizing: border-box;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin: 0 0 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h1::before {
+      content: '🔓';
+    }
+
+    .status {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #4ade80;
+      margin-right: 10px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      color: #9ca3af;
+      margin-bottom: 6px;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px;
+      border: 1px solid #4b5563;
+      border-radius: 6px;
+      background: #000;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #ffffff;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 16px;
+    }
+
+    button {
+      width: auto;
+      min-width: 120px;
+      padding: 8px 16px;
+      background: #ffffff;
+      border: none;
+      border-radius: 4px;
+      color: #000;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .endpoint-selector {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 20px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .endpoint-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 4px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: background 0.2s;
+      border-radius: 6px;
+    }
+
+    .endpoint-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .endpoint-item:last-child {
+      border-bottom: none;
+    }
+
+    .endpoint-item input[type="radio"] {
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #4b5563;
+      border-radius: 50%;
+      margin: 0;
+      cursor: pointer;
+      position: relative;
+      background: transparent;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .endpoint-item input[type="radio"]:checked {
+      border-color: #ffffff;
+      background: #ffffff;
+    }
+
+    .endpoint-item input[type="radio"]:checked::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 6px;
+      height: 6px;
+      background: #000;
+      border-radius: 50%;
+    }
+
+    .endpoint-item label {
+      margin: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .status-dot-mini {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4b5563;
+      transition: all 0.3s ease;
+    }
+
+    .status-online {
+      background: #4ade80;
+      box-shadow: 0 0 10px rgba(74, 222, 128, 0.6);
+    }
+
+    .status-offline {
+      background: #ef4444;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+    }
+
+    #custom-url-container {
+      animation: slideDown 0.3s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 11px;
+      color: #71717a;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="text-align: center; margin-bottom: 16px;">
+    <img src="assets/icon128.png" alt="VTOP AutoCaptcha" style="width: 100%; max-width: 150px; border-radius: 8px;">
+  </div>
+  <h1>VTOP Solver</h1>
+
+  <div class="endpoint-selector">
+    <div class="endpoint-item">
+      <input type="radio" name="endpoint" id="ep-duckdns" value="https://captop.duckdns.org">
+      <label for="ep-duckdns">
+        <span class="status-dot-mini" id="status-duckdns"></span>
+        Original (DuckDNS)
+      </label>
+    </div>
+    <div class="endpoint-item">
+      <input type="radio" name="endpoint" id="ep-proxy" value="https://captop-proxy.sykik.workers.dev">
+      <label for="ep-proxy">
+        <span class="status-dot-mini" id="status-proxy"></span>
+        Cloudflare Proxy
+      </label>
+    </div>
+    <div class="endpoint-item">
+      <input type="radio" name="endpoint" id="ep-custom" value="custom">
+      <label for="ep-custom">Custom URL</label>
+    </div>
+  </div>
+
+  <div id="custom-url-container" style="display: none; margin-top: 10px;">
+    <input type="text" id="apiUrl" placeholder="https://your-api.com">
+  </div>
+
+  <div class="endpoint-item" style="border-bottom: none; padding-top: 14px;">
+    <input type="checkbox" id="reportOptIn">
+    <label for="reportOptIn">Share failed captchas for training</label>
+  </div>
+
+  <div class="actions">
+    <button id="saveBtn">Save Settings</button>
+  </div>
+
+  <div class="footer">
+    Auto-solves captchas on VTOP login
+  </div>
+
+  <script src="js/constants.js"></script>
+  <script src="js/popup.js"></script>
+</body>
+
+</html>

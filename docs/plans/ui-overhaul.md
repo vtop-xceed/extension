@@ -25,7 +25,7 @@
 
 ## 1. Project Structure
 
-All code lives in `/home/sykik/Dev/vtop++/`. Create this exact file tree:
+All code lives in `/home/sykik/Dev/xceed/extension/`. Create this exact file tree:
 
 ```
 vtop++/
@@ -65,7 +65,7 @@ vtop++/
 
 ### Step 1.1: Create `manifest.json`
 
-Create file: `/home/sykik/Dev/vtop++/manifest.json`
+Create file: `/home/sykik/Dev/xceed/extension/manifest.json`
 
 ```json
 {
@@ -650,7 +650,7 @@ chrome.runtime.onInstalled.addListener(() => {
 Run these commands to create simple placeholder icons:
 
 ```bash
-cd /home/sykik/Dev/vtop++
+cd /home/sykik/Dev/xceed/extension
 mkdir -p icons
 # Use ImageMagick if available:
 convert -size 16x16 xc:'#6C5CE7' icons/icon16.png
@@ -1003,10 +1003,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ## 5. Fonts
 
-Download Inter font woff2 files and place them in `/home/sykik/Dev/vtop++/fonts/`:
+Download Inter font woff2 files and place them in `/home/sykik/Dev/xceed/extension/fonts/`:
 
 ```bash
-cd /home/sykik/Dev/vtop++
+cd /home/sykik/Dev/xceed/extension
 mkdir -p fonts
 # Download from Google Fonts CDN:
 curl -L -o fonts/Inter-Regular.woff2 "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hiA.woff2"
@@ -1065,7 +1065,7 @@ _csrf={csrfValue}&authorizedID={id}&x={new Date().toUTCString()}
 
 ### Test 1: Extension Loads Without Errors
 1. Open Chrome → `chrome://extensions` → Enable "Developer mode"
-2. Click "Load unpacked" → select `/home/sykik/Dev/vtop++/`
+2. Click "Load unpacked" → select `/home/sykik/Dev/xceed/extension/`
 3. Navigate to `https://vtop.vitbhopal.ac.in/vtop`
 4. Open DevTools Console (F12 → Console)
 5. **Expected**: `[VTOP++] Extension loaded` in console, no red errors
